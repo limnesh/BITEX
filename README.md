@@ -16,28 +16,9 @@
 **Workshop conducted by Limnesh Augustine**  
 Project Manager · Gulf Business Machines (GBM), Bahrain
 
-[**🚀 START THE WORKSHOP**](#-open-the-three-notebooks) · [**🧪 THE EXPERIMENTS**](#-what-youll-explore) · [**👨‍🚀 ABOUT THE PRESENTER**](#-about-the-presenter) · [**📚 RELATED PROJECTS**](#-continue-exploring)
-
 </div>
 
 ---
-
-## 👋 Welcome, quantum explorers!
-
-Imagine you are the security administrator of **Bahrain Sample Bank (BSB)**, a fictional bank with a production data centre in **Manama**, a disaster-recovery site in **Sitra**, and another in **Dubai**.
-
-Your bank encrypts its communications. **Eve** records a protected exchange today, hoping that tomorrow's quantum computers will let her read it. Can she? What does Shor's algorithm actually attack? And could photons help Alice and Bob agree on fresh secret keys instead?
-
-We will answer those questions by **running the experiments**, not just looking at slides.
-
-```mermaid
-flowchart LR
-    A[🏦 Part 1<br/>Bank + IPsec + Eve] --> B[⚛️ Part 2<br/>Bits + Qubits + Shor]
-    B --> C[🔦 Part 3<br/>Photons + BB84 + AI]
-    C --> D[🔐 Understand<br/>the quantum-security transition]
-```
-
-> **No quantum computer, laser, or Python installation is needed.** A laptop, web browser, internet connection and Google Colab are sufficient for the simulated labs.
 
 ## 🚀 Open the three notebooks
 
@@ -50,18 +31,6 @@ Work through them **in order**. Each notebook contains explanations, runnable Py
 | **03 🔦** | **Quantum Key Distribution, Satellites & Machine Learning**<br/>[`03_QKDandML.ipynb`](https://github.com/limnesh/BITEX/blob/main/03_QKDandML.ipynb) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/limnesh/BITEX/blob/main/03_QKDandML.ipynb) | Send simulated photon pulses; explore BB84, Eve, QBER, reconciliation, privacy amplification, SKR and AI. |
 
 **📂 [Browse all workshop files on GitHub](https://github.com/limnesh/BITEX)**
-
-**If a Colab button cannot find a file:** open the [BITEX repository](https://github.com/limnesh/BITEX), select the corresponding numbered `.ipynb` notebook, or open [Google Colab](https://colab.research.google.com/), choose **File → Open notebook → GitHub**, search for `limnesh/BITEX`, and select the notebook.
-
-### ▶️ How to run a lab
-
-1. Click **Open in Colab** for the notebook you want. Sign in to Google if prompted.
-2. In Colab, run the **Setup / Initialization** code cell near the beginning using the **▶** button. Allow the first installation to finish.
-3. Follow the notebook from top to bottom. **🔵 LIVE — Step 1, Step 2, Step 3…** are the guided workshop activities. **🟠 OPTIONAL** means extra exploration afterward.
-4. Change a slider, select a basis or gate, press **Measure**, and **observe how the results change**. Execute each experiment's cell before using its controls.
-5. To keep your experiments, choose **File → Save a copy in Drive**. Your own copy can be edited without changing this repository.
-
-**Tip:** If an import fails, run the notebook's Setup cell. If you have executed cells out of order and a variable is missing, use **Runtime → Restart session** and run the cells again in sequence. A standard CPU runtime is sufficient for these demonstrations.
 
 ---
 
