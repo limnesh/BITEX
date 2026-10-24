@@ -65,85 +65,44 @@ Work through them **in order**. Each notebook contains explanations, runnable Py
 
 ---
 
-## 🧪 What you'll explore
+## 👨‍🚀 About the presenter — Limnesh Augustine
 
-### 🏦 Part 1 — Can Eve read BSB's banking data?
+**Limnesh Augustine** is an **Electronics and Communication Engineer**, **Project Manager at Gulf Business Machines (GBM), Bahrain**, internationally recognized **3D painting and anamorphic artist**, and an **EASA-licensed Private Pilot (Aeroplane)**. His journey connects **technology, aviation, art and innovation**—bringing an unusual combination of engineering practice, creative thinking and hands-on experimentation to this workshop.
 
-**From encrypted bank replication to a captured IPsec-style handshake**
+### 🎨 Art without boundaries
 
-- Follow a fictional Manama → Sitra → Dubai disaster-recovery scenario.
-- See a **toy Diffie–Hellman** public exchange and how both parties derive the same shared secret.
-- Encrypt a sample record using **AES-GCM**; observe the public data and ciphertext available to Eve.
-- Explore **Harvest Now, Decrypt Later** and why the security of a key exchange matters even when the data-encryption algorithm remains strong.
-- Compare illustrative classical attack-work scales; understand why those are **not measured cracking times**.
+Limnesh is internationally known for his large-scale **3D paintings and anamorphic street art**, which transform ordinary spaces into striking optical illusions. He is a **multiple Guinness World Record holder**, with achievements in **Bahrain and the United States**, and holds the prestigious **Madonnari title from Italy**. Explore his work at **[3DCouple.com](https://3dcouple.com/)**.
 
-**Try this:** Change the banking message. Can Eve read it from the captured ciphertext alone?
+He has been regularly invited to create and present art at government, aviation, cultural and international events in **Bahrain, India, the United States, Germany, Italy, France, the Netherlands, Austria, the Czech Republic, Switzerland, Turkey, Malaysia, Bangladesh and the UAE**.
 
-### ⚛️ Part 2 — From a bit to a quantum attack
+### 🌍 Art, sustainability and global initiatives
 
-**Classical logic → Qubit → Measurement → Entanglement → Shor**
+His creative work has included official collaborations and partnerships with international organizations such as **FAO, UNDP, WHO and WWF**, alongside contributions to United Nations-related initiatives. He attended **UN COP28 in the UAE as a delegate** and participated in the **artist-focused agenda preparation for the UN Summit of the Future 2024**. He is also an active member of an **Art and Culture working group**, advocating for the role of artists in wider public and global conversations.
 
-- Convert numbers to binary and build arithmetic from familiar **NOT, AND, OR and XOR** operations.
-- Explore six reference states on the **Bloch sphere**, prepare random qubits, and measure them.
-- Compare **ordinary gates** with two-qubit interactions that **can create entanglement**.
-- Investigate Shor's **discrete-logarithm** threat to Diffie–Hellman and an **optional compiled RSA factorization** example.
-- Compare published *theoretical* fault-tolerant quantum resource estimates with illustrative classical work models.
+### 💻 Engineering, cybersecurity and quantum research
 
-**Try this:** Why does CNOT entangle `|+⟩|0⟩` but not `|0⟩|0⟩`?
+Professionally, Limnesh has **more than two decades of IT experience** and works as a **Project Manager at GBM Bahrain**, delivering enterprise technology and infrastructure initiatives. He graduated in **Electronics and Communication Engineering from the University of Calicut in 2003**.
 
-### 🔦 Part 3 — Can photons help us distribute a secret key?
+He presented an **IEEE paper in Bahrain in 2025** on **AI-based art evaluation techniques**, connecting his engineering knowledge with a longstanding interest in visual art. He also won the **2019 Hacking Contest organized by the Criminal Investigation Directorate (CID), Ministry of Interior, Bahrain**.
 
-**Optical channel → BB84 → Eve → Keys → Satellites → ML**
+He has **completed a postgraduate diploma at the Indian Institute of Technology Delhi (IIT Delhi)**, covering **quantum computing, quantum communication and AI-integrated advanced communication engineering**. His practical investigations include **Differential Phase Shift Quantum Key Distribution (DPS-QKD)**, **Free-Space Optical (FSO) communication**, atmospheric effects, satellite scenarios and **machine-learning-assisted optimization**.
 
-- Adjust **laser power, pulse width and attenuation** across the **Transmitter → Medium → Receiver** dashboard.
-- Encode a bit in a **BB84 basis**, choose Bob's basis and see **matched vs unmatched** measurements with Bloch spheres.
-- See how **intercept–resend** can increase **QBER (Quantum Bit Error Rate)**.
-- Compare signal and decoy intensities (**μ = 0.50** and **μ = 0.15**) in a simplified photon-number-splitting example.
-- Edit **16-bit Alice/Bob/Eve strings** and observe reconciliation, what public error-correction information can reveal, and **Toeplitz privacy amplification**.
-- Explore modeled **Secret Key Rate (SKR)**, satellite links and **machine-learning-assisted parameter selection**.
+### ✈️ Aviation and interactive learning
 
-**Try this:** Increase Eve's interception percentage. What happens to QBER—and can privacy amplification repair a key that is already completely known to Eve?
+As a private pilot and aviation enthusiast, Limnesh also works on **[ATCSpeak](https://www.atcspeak.com/about)**, an aviation communication learning project. Together with the art of **[3D Couple](https://3dcouple.com/)** and his quantum research, it reflects his interest in helping people **learn complex concepts through realistic, interactive experiences**.
 
----
+> **Why this workshop?** Quantum security is often described through complicated equations and distant predictions. Here, Limnesh brings it into an accessible, hands-on setting: a fictional bank, a simulated quantum attacker, real quantum-computing concepts, and interactive photon-based key-distribution experiments.
 
-## 🎯 Your workshop mission
-
-By the end of the session, try to explain these four ideas in your own words:
-
-| Question | Clue |
-|---|---|
-| **1.** Why can ciphertext captured *today* be at risk *later*? | Think about the original key exchange. |
-| **2.** Why is a qubit not simply a bit that can be read twice? | Prepare, change basis and measure. |
-| **3.** How do Alice and Bob detect some forms of interference? | Compare their bases and a sample of their sifted bits. |
-| **4.** Why do error correction and privacy amplification have different jobs? | One reconciles errors; the other reduces information available to Eve. |
-
-> 🧭 **Remember:** QKD distributes key material; it does **not** directly encrypt a banking application or replace authentication. The notebooks use idealized educational simulations—not real single-photon transmissions, a production VPN, or a demonstrated large-scale Shor attack.
-
----
-
-## 👨‍🚀 About the presenter
-
-**Limnesh Augustine** is an **IT Project Manager at Gulf Business Machines (GBM), Bahrain**, with more than two decades of experience across enterprise technology, infrastructure and project delivery. He holds a **B.Tech in Electronics and Communication Engineering (University of Calicut, 2003)** and is pursuing an **IIT Delhi postgraduate diploma in Advanced Communication Engineering with Quantum & AI Integration**.
-
-His interest in quantum communication combines an engineering background with hands-on simulation and programming. His work includes studying **Differential Phase Shift Quantum Key Distribution (DPS-QKD) over Free-Space Optical (FSO) channels**, atmospheric effects, satellite communication scenarios and **ML-assisted parameter optimization**.
-
-But engineering is only one side of the story:
-
-- **🎨 Art and perspective:** Together with artist and educator **Jincy Babu**, Limnesh is part of **[3D Couple](https://3dcouple.com/)**, creating international 3D anamorphic/street art, including Guinness World Record achievements and educational workshops. Their work is a reminder that *what we observe depends on how we look*—an evocative parallel to measurement in quantum physics, though not a literal explanation of quantum mechanics.
-- **✈️ Aviation and communication:** As a private pilot and aviation enthusiast, he also develops **[ATCSpeak](https://www.atcspeak.com/about)**, an aviation radio-communication practice project connecting technical learning with realistic training scenarios.
-- **💡 Technology and exploration:** His interests connect enterprise systems, cybersecurity, optical communications, interactive programming, aviation and public art—fields that might seem unrelated until an experiment brings them together.
-
-*This is an independent educational workshop; professional affiliations identify the presenter and do not imply that the sample bank or simulations are production systems.*
+*This is an independent educational workshop. BSB is fictional; the notebooks demonstrate simplified research and teaching models rather than production banking or operational quantum systems.*
 
 ## 📚 Continue exploring
 
 | Project / website | Explore |
 |---|---|
-| **DPS-QKD over Free-Space Optical Channels — Project Report** | [📖 Read the interactive research report](https://limnesh.github.io/QuantumKeyDistribution-DPS/DPS_QKD_FSO_Project_Report_v1.0.html) |
-| **Differential Phase Shift QKD — Source and simulations** | [💻 Explore the DPS-QKD repository](https://github.com/limnesh/QuantumKeyDistribution-DPS) |
-| **Free-Space Optical Communication — Related project** | [🔭 Explore the FSO repository](https://github.com/limnesh/QuantumKeyDistribution-FSO/) |
+| **DPS-QKD over Free-Space Optical Channels — Project Report** | [📖 Read the research report](https://limnesh.github.io/QuantumKeyDistribution-DPS/DPS_QKD_FSO_Project_Report_v1.0.html) |
+| **QKD over Free-Space Optical Communication — Project Report** | [📖 Read the research report](https://limnesh.github.io/QuantumKeyDistribution-FSO/QKD_FSO_Project_Report-v1.0.html) |
 | **3D Couple — Art that changes perspective** | [🎨 Visit 3dcouple.com](https://3dcouple.com/) |
-| **ATCSpeak — Aviation communication practice** | [✈️ Visit ATCSpeak](https://www.atcspeak.com/about) |
+| **ATCSpeak — Aviation communication practice** | [✈️ Visit ATCSpeak](https://www.atcspeak.com) |
 | **Workshop source files and updates** | [🔐 GitHub · limnesh/BITEX](https://github.com/limnesh/BITEX) |
 
 ---
