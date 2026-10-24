@@ -36,31 +36,13 @@ Work through them **in order**. Each notebook contains explanations, runnable Py
 
 ## 👨‍🚀 About the presenter — Limnesh Augustine
 
-**Limnesh Augustine** is an **Electronics and Communication Engineer**, **Project Manager at Gulf Business Machines (GBM), Bahrain**, internationally recognized **3D painting and anamorphic artist**, and an **EASA-licensed Private Pilot (Aeroplane)**. His journey connects **technology, aviation, art and innovation**—bringing an unusual combination of engineering practice, creative thinking and hands-on experimentation to this workshop.
+**Limnesh Augustine** is an **Electronics and Communication Engineer (University of Calicut, 2003)** and **Project Manager at Gulf Business Machines (GBM), Bahrain**, with over two decades of IT experience. He previously served as **Head of IT for the Works Directorate and subsequently the Planning & Future Systems Directorate at the Ministry of Interior, Bahrain, until 2019**.
 
-### 🎨 Art without boundaries
+Beyond technology, he is an internationally recognized **3D anamorphic artist**, a **multiple Guinness World Record holder** (Bahrain and USA), recipient of Italy’s **Madonnari title**, and an **EASA-licensed Private Pilot**. His creative work includes collaborations with **FAO, UNDP, WHO and WWF** and participation in UN-related initiatives. Explore his art at **[3DCouple.com](https://3dcouple.com/)** and his aviation learning project at **[ATCSpeak](https://www.atcspeak.com/about)**.
 
-Limnesh is internationally known for his large-scale **3D paintings and anamorphic street art**, which transform ordinary spaces into striking optical illusions. He is a **multiple Guinness World Record holder**, with achievements in **Bahrain and the United States**, and holds the prestigious **Madonnari title from Italy**. Explore his work at **[3DCouple.com](https://3dcouple.com/)**.
+His interests span **quantum communication, QKD, free-space optics and AI**. He has completed postgraduate studies at **IIT Delhi**, presented a **2025 IEEE paper** on AI-based art evaluation, and won the **2019 CID hacking competition** organized by Bahrain’s Ministry of Interior.
 
-He has been regularly invited to create and present art at government, aviation, cultural and international events in **Bahrain, India, the United States, Germany, Italy, France, the Netherlands, Austria, the Czech Republic, Switzerland, Turkey, Malaysia, Bangladesh and the UAE**.
-
-### 🌍 Art, sustainability and global initiatives
-
-His creative work has included official collaborations and partnerships with international organizations such as **FAO, UNDP, WHO and WWF**, alongside contributions to United Nations-related initiatives. He attended **UN COP28 in the UAE as a delegate** and participated in the **artist-focused agenda preparation for the UN Summit of the Future 2024**. He is also an active member of an **Art and Culture working group**, advocating for the role of artists in wider public and global conversations.
-
-### 💻 Engineering, cybersecurity and quantum research
-
-Professionally, Limnesh has **more than two decades of IT experience** and works as a **Project Manager at GBM Bahrain**, delivering enterprise technology and infrastructure initiatives. He graduated in **Electronics and Communication Engineering from the University of Calicut in 2003**.
-
-He presented an **IEEE paper in Bahrain in 2025** on **AI-based art evaluation techniques**, connecting his engineering knowledge with a longstanding interest in visual art. He also won the **2019 Hacking Contest organized by the Criminal Investigation Directorate (CID), Ministry of Interior, Bahrain**.
-
-He has **completed a postgraduate diploma at the Indian Institute of Technology Delhi (IIT Delhi)**, covering **quantum computing, quantum communication and AI-integrated advanced communication engineering**. His practical investigations include **Differential Phase Shift Quantum Key Distribution (DPS-QKD)**, **Free-Space Optical (FSO) communication**, atmospheric effects, satellite scenarios and **machine-learning-assisted optimization**.
-
-### ✈️ Aviation and interactive learning
-
-As a private pilot and aviation enthusiast, Limnesh also works on **[ATCSpeak](https://www.atcspeak.com/about)**, an aviation communication learning project. Together with the art of **[3D Couple](https://3dcouple.com/)** and his quantum research, it reflects his interest in helping people **learn complex concepts through realistic, interactive experiences**.
-
-> **Why this workshop?** Quantum security is often described through complicated equations and distant predictions. Here, Limnesh brings it into an accessible, hands-on setting: a fictional bank, a simulated quantum attacker, real quantum-computing concepts, and interactive photon-based key-distribution experiments.
+> **Why this workshop?** To make quantum security approachable through interactive experiments connecting classical encryption, quantum computing and photon-based key distribution.
 
 *This is an independent educational workshop. BSB is fictional; the notebooks demonstrate simplified research and teaching models rather than production banking or operational quantum systems.*
 
