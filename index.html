@@ -1,310 +1,156 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07111f">
-  <meta name="description" content="Quantum Security 101 at MeetICT & BITEX 2026: three interactive Google Colab labs exploring classical security, quantum computing, and quantum key distribution with AI.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Quantum Security 101 · BITEX 2026">
-  <meta property="og:description" content="From Breaking RSA to Quantum Key Distribution with AI. Three hands-on Google Colab notebooks.">
-  <meta property="og:url" content="https://limnesh.github.io/BITEX/">
-  <title>Quantum Security 101 | BITEX 2026 · Limnesh Augustine</title>
+  <meta name="description" content="Quantum Security 101 at MeetICT & BITEX 2026. Three interactive Google Colab notebooks covering classical security, quantum computing, and quantum key distribution.">
+  <title>Quantum Security 101 | BITEX 2026</title>
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #070f1d;
-      --bg2: #0b1729;
-      --panel: rgba(17, 33, 53, .82);
-      --panel2: #102038;
-      --text: #f2f8ff;
-      --muted: #a9bbd0;
-      --line: rgba(171,211,252,.16);
-      --cyan: #68e4f5;
-      --blue: #70a7ff;
-      --violet: #c0a6ff;
-      --green: #76e4b5;
-      --amber: #ffca7a;
-      --radius: 21px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    :root {color-scheme: light;}
+    * {box-sizing:border-box;}
+    body {background:#fff;color:#1f2328;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:0;}
+    main {max-width:1020px;margin:0 auto;padding:30px 30px 65px;}
+    h1,h2,h3 {line-height:1.3;margin:26px 0 14px;font-weight:650;}
+    h1 {font-size:2.15rem;margin-top:10px;}
+    h2 {font-size:1.55rem;padding-bottom:7px;border-bottom:1px solid #d8dee4;}
+    h3 {font-size:1.17rem;}
+    p {margin:10px 0 16px;}
+    a {color:#0969da;text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    hr {border:0;border-top:1px solid #d8dee4;margin:25px 0;}
+    strong {font-weight:650;}
+    .readme-center {text-align:center;}
+    .readme-center h3 {color:#57606a;font-weight:500;}
+    .meta-line {font-size:.9rem;color:#57606a;}
+    .table-scroll {width:100%;overflow-x:auto;margin:18px 0 22px;}
+    table {width:100%;border-spacing:0;border-collapse:collapse;min-width:650px;font-size:.94rem;}
+    th,td {border:1px solid #d0d7de;padding:10px 12px;vertical-align:top;text-align:left;}
+    th {background:#f6f8fa;font-weight:650;}
+    tr:nth-child(even) td {background:#fbfcfd;}
+    td img {max-width:142px;height:auto;vertical-align:middle;}
+    code {background:#f6f8fa;border-radius:5px;padding:2px 5px;font-size:.91em;white-space:nowrap;}
+    blockquote {margin:18px 0;padding:0 16px;border-left:4px solid #d0d7de;color:#57606a;}
+    blockquote p {margin:6px 0;}
+    details {border:1px solid #d0d7de;border-radius:7px;padding:13px 17px;margin:18px 0;}
+    summary {cursor:pointer;font-weight:600;}
+    li {padding:2px 0;}
+    @media(max-width:680px) {
+      main {padding:20px 17px 45px;}
+      h1 {font-size:1.8rem;}
+      h2 {font-size:1.35rem;}
+      body {font-size:15px;}
+      table {font-size:.89rem;}
+
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body { margin:0; background: var(--bg); color: var(--text); line-height: 1.58; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; border-radius: 6px; }
-    button { font:inherit; }
-    .skip-link { position:absolute; top:-100px; left:20px; z-index:100; background:white; color:#000; padding:12px 18px; }
-    .skip-link:focus { top:12px; }
-    .page-glow { pointer-events:none; position:absolute; inset:0 0 auto; height:890px; overflow:hidden; z-index:-1; }
-    .page-glow:before, .page-glow:after { content:""; position:absolute; border-radius:50%; filter:blur(70px); opacity:.25; }
-    .page-glow:before { background:#126baa; width:640px; height:640px; top:-300px; left:-160px; }
-    .page-glow:after { background:#7c3aed; width:560px; height:560px; top:-150px; right:-260px; opacity:.17; }
-    .wrap { width:min(1160px,calc(100% - 44px)); margin-inline:auto; }
-    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); background:rgba(7,15,29,.83); border-bottom:1px solid var(--line); }
-    .nav-row { min-height:76px; display:flex; align-items:center; gap:24px; justify-content:space-between; }
-    .brand { display:inline-flex; align-items:center; gap:12px; font-size:15px; letter-spacing:.075em; font-weight:800; white-space:nowrap; }
-    .brand-mark { display:grid; place-items:center; width:37px; height:37px; border-radius:11px; background:linear-gradient(135deg,#2dbcd6,#5073c1); box-shadow:0 0 25px rgba(82,206,241,.22); color:white; font-size:21px; }
-    .brand small { display:block; font-size:10px; letter-spacing:.18em; font-weight:650; color:var(--muted); margin-top:-3px; }
-    .nav-links { display:flex; flex-wrap:wrap; align-items:center; gap:23px; color:#c0d0e0; font-size:13px; font-weight:640; }
-    .nav-links>a:hover { color:white; }
-    .nav-gh { padding:10px 14px; border:1px solid rgba(188,210,241,.25); border-radius:10px; background:rgba(255,255,255,.035); }
-    .nav-gh:hover { border-color:var(--cyan); }
-    .hero { padding:84px 0 72px; display:grid; grid-template-columns:1.05fr .95fr; gap:35px; align-items:center; }
-    .eyebrow { display:inline-flex; align-items:center; flex-wrap:wrap; gap:9px; color:var(--cyan); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.17em; }
-    .eyebrow .spark { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 6px rgba(104,228,245,.09); }
-    h1 { font-size:clamp(3.5rem,7.3vw,6.3rem); letter-spacing:-.07em; line-height:1.005; margin:19px 0 25px; font-weight:860; }
-    h1 .gradient { background:linear-gradient(94deg,#80f3ff 0%,#94baff 54%,#c7aaff 98%); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .hero-lead { font-size:clamp(1.15rem,2vw,1.5rem); max-width:635px; line-height:1.42; letter-spacing:-.02em; color:#e0efff; font-weight:520; }
-    .hero-copy { color:var(--muted); max-width:520px; margin:17px 0 29px; font-size:15px; }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:13px 19px; font-size:14px; font-weight:780; border-radius:12px; transition: transform .16s, border-color .16s, background .16s; min-height:49px; }
-    .btn:hover { transform:translateY(-2px); }
-    .btn-primary { color:#071423; background:linear-gradient(110deg,#83eff8,#91b9ff); box-shadow:0 10px 34px rgba(104,228,245,.18); }
-    .btn-ghost { border:1px solid rgba(189,213,249,.27); background:rgba(255,255,255,.035); }
-    .btn-ghost:hover { border-color:var(--cyan); }
-    .event { display:flex; gap:17px; flex-wrap:wrap; margin-top:30px; padding-top:22px; border-top:1px solid var(--line); color:#c4d3e4; font-size:13px; }
-    .event span { display:inline-flex; align-items:center; gap:8px; }
-    .event svg { flex:none; color:var(--cyan); }
-    .visual { isolation:isolate; position:relative; min-height:472px; display:flex; align-items:center; justify-content:center; }
-    .visual::before { content:""; z-index:-1; position:absolute; inset:15px 10px; border-radius:50%; background:radial-gradient(closest-side,rgba(43,113,190,.26),rgba(58,35,108,.08) 70%,transparent 75%); filter:blur(8px); }
-    .visual svg { width:100%; height:auto; max-height:500px; overflow:visible; }
-    .visual-caption { position:absolute; left:50%; bottom:4px; transform:translateX(-50%); width:max-content; color:#b5c7de; font-size:11px; letter-spacing:.18em; font-weight:750; text-transform:uppercase; }
-    .strap { padding:17px 23px; border:1px solid var(--line); background:linear-gradient(95deg,rgba(12,30,47,.88),rgba(19,31,54,.83)); border-radius:15px; display:flex; justify-content:space-between; gap:16px; align-items:center; color:#d4e7f8; }
-    .strap strong { color:#fff; }
-    .strap p { margin:0; }
-    .strap .live { color:#9bf4cb; font-weight:800; white-space:nowrap; font-size:12px; letter-spacing:.08em; }
-    section { padding:92px 0 0; }
-    .section-top { display:flex; align-items:end; justify-content:space-between; gap:22px; margin-bottom:30px; }
-    .kicker { display:block; color:var(--cyan); font-size:12px; text-transform:uppercase; letter-spacing:.17em; font-weight:800; margin-bottom:11px; }
-    h2 { font-size:clamp(2rem,3.6vw,3.1rem); margin:0 0 10px; line-height:1.12; letter-spacing:-.048em; font-weight:815; }
-    .section-desc { color:var(--muted); max-width:630px; margin:0; font-size:15px; }
-    .count { color:#8fa7c3; font-size:12px; white-space:nowrap; }
-    .cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:19px; }
-    .course { position:relative; display:flex; flex-direction:column; min-width:0; border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(155deg,rgba(24,43,68,.92),rgba(10,23,42,.95)); padding:27px 26px 25px; box-shadow:0 15px 36px rgba(0,0,0,.09); overflow:hidden; }
-    .course::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--accent); }
-    .course:hover { border-color:color-mix(in srgb,var(--accent) 54%,transparent); transform:translateY(-4px); transition:all .16s; }
-    .course-no { display:flex; align-items:center; justify-content:space-between; gap:15px; color:var(--accent); font-size:12px; font-weight:820; letter-spacing:.15em; }
-    .course-icon { display:grid; place-items:center; width:55px; height:55px; margin:27px 0 22px; border-radius:16px; font-size:28px; background:color-mix(in srgb,var(--accent) 12%,#13283f); border:1px solid color-mix(in srgb,var(--accent) 23%,transparent); }
-    .course h3 { margin:0 0 13px; font-size:23px; letter-spacing:-.035em; line-height:1.22; }
-    .course p { margin:0 0 22px; color:#b0c2d7; font-size:14px; flex-grow:1; }
-    .tags { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 22px; }
-    .tag { font-size:10.5px; background:#1a3049; padding:6px 9px; border-radius:7px; color:#c8d7e6; }
-    .card-link { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--accent); color:#091521; padding:13px 15px; font-size:13px; border-radius:10px; font-weight:850; text-align:left; }
-    .card-link:hover { filter:brightness(1.1); }
-    .source-link { display:inline-block; font-size:11px; color:#a6bbcf; margin-top:13px; align-self:center; text-decoration:underline; text-decoration-color:#526980; text-underline-offset:4px; }
-    .journey { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px; margin-top:27px; }
-    .journey-step { border-left:2px solid rgba(104,228,245,.37); padding-left:17px; }
-    .journey-step b { font-size:13px; color:#edfbff; display:block; margin-bottom:5px; }
-    .journey-step p { margin:0; font-size:13px; color:var(--muted); }
-    .quick-area { border:1px solid var(--line); border-radius:var(--radius); background:radial-gradient(circle at 3% 0%,rgba(42,135,172,.15),transparent 45%),#0b1b30; padding:32px; display:grid; grid-template-columns:.75fr 1.25fr; align-items:center; gap:32px; }
-    .quick-area h2 { font-size:clamp(1.9rem,3vw,2.5rem); }
-    .quick-area p { color:var(--muted); font-size:14px; }
-    .quick-list { margin:0; padding:0; list-style:none; display:grid; gap:16px; }
-    .quick-list li { display:flex; align-items:flex-start; gap:14px; color:#c3d6e9; font-size:13px; }
-    .quick-list li strong { color:#f1f8ff; display:block; margin-bottom:2px; font-size:14px; }
-    .num { width:30px; height:30px; flex:none; border:1px solid #2b5268; background:#143245; color:#8cf1e8; border-radius:10px; display:grid; place-items:center; font-weight:800; }
-    .about-layout { display:grid; grid-template-columns:1.38fr .62fr; gap:22px; align-items:stretch; }
-    .about-card, .side-card { border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:30px; }
-    .about-card p { color:#c2d2e5; margin:0 0 16px; font-size:14px; }
-    .about-card p:last-child { margin-bottom:0; }
-    .about-card strong { color:#f2f8ff; }
-    .about-eyebrow { display:flex; flex-wrap:wrap; gap:8px; margin:21px 0 0; }
-    .mini-pill { border:1px solid rgba(180,216,253,.22); border-radius:25px; padding:7px 10px; color:#c3d5e8; font-size:11px; }
-    .side-card { display:flex; flex-direction:column; gap:17px; background:linear-gradient(148deg,#112943,#0b192c); }
-    .side-card .quote-icon { color:#8be8f4; font-size:48px; height:27px; line-height:1; }
-    .side-card blockquote { font-size:clamp(1.15rem,2vw,1.48rem); letter-spacing:-.025em; font-weight:680; line-height:1.5; margin:10px 0 0; }
-    .side-card span { color:var(--muted); font-size:12px; }
-    .resource-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
-    .resource { border:1px solid var(--line); border-radius:15px; background:var(--panel); padding:19px 21px; display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:98px; }
-    .resource:hover { border-color:#84d9f3; background:#142b45; }
-    .resource b { display:block; font-size:14px; margin-bottom:5px; }
-    .resource small { display:block; font-size:12px; color:var(--muted); }
-    .resource .arrow { color:var(--cyan); font-size:23px; }
-    details.help { margin-top:21px; border:1px solid var(--line); border-radius:13px; background:rgba(15,34,55,.8); padding:5px 23px; }
-    details.help summary { cursor:pointer; padding:14px 0; font-size:15px; font-weight:720; }
-    details.help .help-body { border-top:1px solid var(--line); padding:14px 0 18px; color:var(--muted); font-size:13px; }
-    details.help li { margin-bottom:7px; }
-    footer { margin-top:95px; padding:30px 0 39px; border-top:1px solid var(--line); }
-    .footer-row { display:flex; flex-wrap:wrap; gap:18px; justify-content:space-between; align-items:center; }
-    .footer-row p { margin:0; font-size:12px; color:#90a6bc; }
-    .footer-links { display:flex; flex-wrap:wrap; gap:19px; font-size:12px; color:#bcd0e3; }
-    .footer-links a:hover { color:white; }
-    .note { font-size:11px; color:#718aa5; margin-top:12px; }
-    @media (max-width:1010px) { .hero { gap:2px; } .visual { min-height:385px; } .course { padding:22px; } .cards { gap:12px; } .course h3 { font-size:20px; } .nav-links { gap:13px; } }
-    @media (max-width:800px) { .hero { grid-template-columns:1fr; padding:65px 0 33px; } .visual { min-height:350px; max-width:560px; width:100%; margin:auto; } .hero-lead,.hero-copy { max-width:680px; } .cards { grid-template-columns:1fr; } .course { padding:24px; } .course-icon { margin:19px 0 16px; } .course p { min-height:0; } .quick-area, .about-layout { grid-template-columns:1fr; } .side-card { min-height:180px; } .nav-row { flex-wrap:wrap; gap:10px; padding:10px 0; } .nav-links { justify-content:flex-end; } }
-    @media (max-width:530px) { .wrap { width:min(100% - 30px,1160px); } .nav-links { font-size:11px; gap:9px; width:100%; justify-content:space-between; } .nav-row { gap:10px; } .nav-gh { padding:6px 8px; } .hero { padding-top:54px; } h1 { font-size:3.4rem; } .event { gap:9px; } .strap { align-items:flex-start; flex-direction:column; } .resource-grid { grid-template-columns:1fr; } .quick-area { padding:25px 20px; } .section-top { align-items:start; flex-direction:column; } .count { display:none; } .visual { min-height:260px; } section { padding-top:72px; } .about-card,.side-card { padding:23px; } }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none!important; animation:none!important; } }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to workshop content</a>
-  <div class="page-glow" aria-hidden="true"></div>
-  <header class="nav">
-    <div class="wrap nav-row">
-      <a href="#top" class="brand" aria-label="Quantum Security 101 home"><span class="brand-mark">⌘</span><span>QUANTUM SECURITY<small>BITEX 2026 · BAHRAIN</small></span></a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#notebooks">The labs</a>
-        <a href="#getting-started">Quick start</a>
-        <a href="#presenter">Presenter</a>
-        <a href="https://github.com/limnesh/BITEX" class="nav-gh" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      </nav>
-    </div>
-  </header>
+<main>
+<div class="readme-center">
+<h1>🔐 Quantum Security 101</h1>
+<h3>From Breaking RSA to Quantum Key Distribution with AI</h3>
+<p><strong>One fictional bank. Three interactive notebooks. A journey from classical encryption to quantum-safe communication.</strong></p>
+<p class="meta-line"><a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">MeetICT &amp; BITEX 2026</a>
+ · Bahrain
+ · Interactive Google Colab
+ · Beginners welcome</p>
+<p><strong>28 October 2026 · 12:00–1:00 PM (Bahrain time) · Gulf Convention Centre, Gulf Hotel, Bahrain</strong></p>
+<p><strong>Workshop conducted by Limnesh Augustine</strong><br/>
+Project Manager · Gulf Business Machines (GBM), Bahrain</p>
+</div>
+<hr/>
+<h2>🚀 Open the three notebooks</h2>
+<p>Work through them <strong>in order</strong>. Each notebook contains explanations, runnable Python cells and interactive controls.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th></th>
+<th>Workshop notebook</th>
+<th>Launch in Google Colab</th>
+<th>What you will do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>01 🏦</strong></td>
+<td><strong>BSB Banking, IPsec &amp; Harvest Now–Decrypt Later</strong><br/><a href="https://github.com/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" rel="noopener noreferrer" target="_blank"><code>01_ClassicalSecurity.ipynb</code></a></td>
+<td><a href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
+<td>Observe key exchange, encrypt a banking record, and see what Eve can record.</td>
+</tr>
+<tr>
+<td><strong>02 ⚛️</strong></td>
+<td><strong>From Classical Bits to Qubits and Shor's Algorithm</strong><br/><a href="https://github.com/limnesh/BITEX/blob/main/02_QuantumComputing.ipynb" rel="noopener noreferrer" target="_blank"><code>02_QuantumComputing.ipynb</code></a></td>
+<td><a href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/02_QuantumComputing.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
+<td>Experiment with Bloch spheres, gates, measurements, and the quantum threat to public-key cryptography.</td>
+</tr>
+<tr>
+<td><strong>03 🔦</strong></td>
+<td><strong>Quantum Key Distribution, Satellites &amp; Machine Learning</strong><br/><a href="https://github.com/limnesh/BITEX/blob/main/03_QKDandML.ipynb" rel="noopener noreferrer" target="_blank"><code>03_QKDandML.ipynb</code></a></td>
+<td><a href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/03_QKDandML.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
+<td>Send simulated photon pulses; explore BB84, Eve, QBER, reconciliation, privacy amplification, SKR and AI.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>📂 <a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">Browse all workshop files on GitHub</a></strong></p>
+<hr/>
+<h2>👨‍🚀 About the presenter — Limnesh Augustine</h2>
+<p><strong>Limnesh Augustine</strong> is an <strong>Electronics and Communication Engineer (University of Calicut, 2003)</strong> and <strong>Project Manager at Gulf Business Machines (GBM), Bahrain</strong>, with over two decades of IT experience. He previously served as <strong>Head of IT for the Works Directorate and subsequently the Planning &amp; Future Systems Directorate at the Ministry of Interior, Bahrain, until 2019</strong>.</p>
+<p>Beyond technology, he is an internationally recognized <strong>3D anamorphic artist</strong>, a <strong>multiple Guinness World Record holder</strong> (Bahrain and USA), recipient of Italy’s <strong>Madonnari title</strong>, and an <strong>EASA-licensed Private Pilot</strong>. His creative work includes collaborations with <strong>FAO, UNDP, WHO and WWF</strong> and participation in UN-related initiatives. Explore his art at <strong><a href="https://3dcouple.com/" rel="noopener noreferrer" target="_blank">3DCouple.com</a></strong> and his aviation learning project at <strong><a href="https://www.atcspeak.com/about" rel="noopener noreferrer" target="_blank">ATCSpeak</a></strong>.</p>
+<p>His interests span <strong>quantum communication, QKD, free-space optics and AI</strong>. He has completed postgraduate studies at <strong>IIT Delhi</strong>, presented a <strong>2025 IEEE paper</strong> on AI-based art evaluation, and won the <strong>2019 CID hacking competition</strong> organized by Bahrain’s Ministry of Interior.</p>
+<blockquote>
+<p><strong>Why this workshop?</strong> To make quantum security approachable through interactive experiments connecting classical encryption, quantum computing and photon-based key distribution.</p>
+</blockquote>
+<p><em>This is an independent educational workshop. BSB is fictional; the notebooks demonstrate simplified research and teaching models rather than production banking or operational quantum systems.</em></p>
+<h2>📚 Continue exploring</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Project / website</th>
+<th>Explore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DPS-QKD over Free-Space Optical Channels — Project Report</strong></td>
+<td><a href="https://limnesh.github.io/QuantumKeyDistribution-DPS/DPS_QKD_FSO_Project_Report_v1.0.html" rel="noopener noreferrer" target="_blank">📖 Read the research report</a></td>
+</tr>
+<tr>
+<td><strong>QKD over Free-Space Optical Communication — Project Report</strong></td>
+<td><a href="https://limnesh.github.io/QuantumKeyDistribution-FSO/QKD_FSO_Project_Report-v1.0.html" rel="noopener noreferrer" target="_blank">📖 Read the research report</a></td>
+</tr>
+<tr>
+<td><strong>3D Couple — Art that changes perspective</strong></td>
+<td><a href="https://3dcouple.com/" rel="noopener noreferrer" target="_blank">🎨 Visit 3dcouple.com</a></td>
+</tr>
+<tr>
+<td><strong>ATCSpeak — Aviation communication practice</strong></td>
+<td><a href="https://www.atcspeak.com" rel="noopener noreferrer" target="_blank">✈️ Visit ATCSpeak</a></td>
+</tr>
+<tr>
+<td><strong>Workshop source files and updates</strong></td>
+<td><a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">🔐 GitHub · limnesh/BITEX</a></td>
+</tr>
+</tbody>
+</table></div>
+<hr/>
+<details>
+<summary><strong>🛠️ Troubleshooting and important notes</strong></summary>
+<ul>
+<li><strong>The notebook opens but a button does nothing:</strong> Run its setup and relevant widget-creation cell. In Google Colab, interactive widgets require the notebook runtime to be connected.</li>
+<li><strong><code>ModuleNotFoundError</code> (Qiskit, scikit-learn, etc.):</strong> Run the Setup cell. A fresh Colab environment does not always have all dependencies installed.</li>
+<li><strong><code>NameError</code> or missing variables:</strong> A previous cell has not run. Restart the session and follow the notebook order.</li>
+<li><strong>Charts or measurements change each time:</strong> Some demonstrations intentionally use randomness. Quantum simulations are often sampled, and ML models may involve stochastic training.</li>
+<li><strong>A toy 9-bit DH example is broken quickly:</strong> That is intentional. It illustrates the mathematics; it is not the security level of a modern 2048-bit finite-field DH group.</li>
+<li><strong>A displayed quantum circuit includes modular-operation placeholders:</strong> The architecture diagram should not be mistaken for a fully implemented, runnable fault-tolerant Shor circuit.</li>
+<li><strong>A secret key rate is displayed:</strong> Treat it as a model output under stated assumptions, not a deployment guarantee or a composable finite-key security proof.</li>
+</ul>
+</details>
+<div class="readme-center">
+<h3>Keep experimenting. Ask why. Change one variable. Observe the result.</h3>
+<p><strong>From 0 and 1 to photons, phase, and the future of secure communication.</strong></p>
+<p>⭐ If these materials helped you, consider starring the <a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">BITEX repository</a>.</p>
+</div>
 
-  <main id="main">
-    <div class="wrap" id="top">
-      <div class="hero">
-        <div class="hero-content">
-          <div class="eyebrow"><span class="spark"></span> MeetICT & BITEX 2026 <span style="color:#577895">/</span> Hands-on workshop</div>
-          <h1>Quantum<br><span class="gradient">Security 101.</span></h1>
-          <div class="hero-lead">From Breaking RSA to Quantum Key Distribution with AI</div>
-          <p class="hero-copy">One fictional bank. Three interactive notebooks. A hands-on journey from classical encryption and quantum attacks to photon-based key distribution and intelligent optimization.</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#notebooks">Explore the three labs <span aria-hidden="true">↘</span></a>
-            <a class="btn btn-ghost" href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" target="_blank" rel="noopener noreferrer">Launch Part 01 <span aria-hidden="true">↗</span></a>
-          </div>
-          <div class="event">
-            <span><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg>28 October 2026</span>
-            <span><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>12:00–1:00 PM · Bahrain</span>
-            <span><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Gulf Convention Centre · Gulf Hotel</span>
-          </div>
-        </div>
-        <div class="visual" aria-hidden="true">
-          <svg viewBox="0 0 540 530" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="orbit" x1="65" y1="45" x2="480" y2="487" gradientUnits="userSpaceOnUse"><stop stop-color="#55e9f9"/><stop offset=".52" stop-color="#679dff"/><stop offset="1" stop-color="#c89bff"/></linearGradient>
-              <linearGradient id="core" x1="167" y1="164" x2="363" y2="359" gradientUnits="userSpaceOnUse"><stop stop-color="#183a65"/><stop offset="1" stop-color="#141a39"/></linearGradient>
-              <filter id="glow"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            </defs>
-            <circle cx="270" cy="252" r="213" stroke="#5f8fbd" stroke-opacity=".12"/>
-            <circle cx="270" cy="252" r="172" stroke="#5f8fbd" stroke-opacity=".14" stroke-dasharray="3 10"/>
-            <circle cx="270" cy="252" r="132" stroke="#5f8fbd" stroke-opacity=".13"/>
-            <ellipse cx="270" cy="252" rx="228" ry="82" transform="rotate(-32 270 252)" stroke="url(#orbit)" stroke-width="2" stroke-opacity=".82"/>
-            <ellipse cx="270" cy="252" rx="222" ry="92" transform="rotate(51 270 252)" stroke="url(#orbit)" stroke-width="1.6" stroke-opacity=".62"/>
-            <ellipse cx="270" cy="252" rx="207" ry="78" transform="rotate(105 270 252)" stroke="url(#orbit)" stroke-width="1.2" stroke-opacity=".4"/>
-            <circle cx="270" cy="252" r="111" fill="url(#core)" stroke="#608fc2" stroke-opacity=".33"/>
-            <circle cx="270" cy="252" r="91" fill="#0d213a" fill-opacity=".72" stroke="#446f9d" stroke-opacity=".35"/>
-            <path d="M232 204v94h74v-94m-74 47h74m-37-47v94" stroke="url(#orbit)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".95" filter="url(#glow)"/>
-            <path d="M221 220c-32-25-48-58-41-91M317 293c31 16 50 45 56 75" stroke="#79a8f5" stroke-dasharray="5 7" stroke-opacity=".5"/>
-            <circle cx="87" cy="349" r="9" fill="#5ce4f0" filter="url(#glow)"/>
-            <circle cx="415" cy="125" r="10" fill="#c1a0ff" filter="url(#glow)"/>
-            <circle cx="424" cy="371" r="6" fill="#88b3ff" filter="url(#glow)"/>
-            <circle cx="151" cy="115" r="4" fill="#8fe1ee"/>
-            <circle cx="332" cy="63" r="4" fill="#9fb6ee"/>
-            <circle cx="467" cy="226" r="3" fill="#9fb6ee"/>
-            <circle cx="132" cy="434" r="3" fill="#9fb6ee"/>
-            <g>
-              <rect x="24" y="112" width="140" height="63" rx="13" fill="#122f46" stroke="#4bb7d1" stroke-opacity=".55"/>
-              <text x="40" y="136" fill="#8eeaf2" font-size="10" font-weight="800" letter-spacing="2">CLASSICAL</text>
-              <text x="40" y="157" fill="#e5f4ff" font-size="15" font-weight="700">Encrypt / capture</text>
-            </g>
-            <g>
-              <rect x="370" y="393" width="152" height="63" rx="13" fill="#211d41" stroke="#af8fe8" stroke-opacity=".65"/>
-              <text x="386" y="417" fill="#c2aaff" font-size="10" font-weight="800" letter-spacing="2">QUANTUM</text>
-              <text x="386" y="438" fill="#f0e9ff" font-size="15" font-weight="700">Measure / protect</text>
-            </g>
-            <g>
-              <rect x="35" y="394" width="106" height="42" rx="10" fill="#0a2c35" stroke="#478a94" stroke-opacity=".55"/>
-              <text x="49" y="420" fill="#92eedb" font-size="13" font-weight="750">01 → 10 → ψ</text>
-            </g>
-            <path d="M270 14v26M270 466v23M28 252h18M496 252h18" stroke="#5d92bf" stroke-opacity=".35" stroke-width="2"/>
-          </svg>
-          <div class="visual-caption">Bits · Qubits · Photons</div>
-        </div>
-      </div>
-      <div class="strap">
-        <p><strong>No local installation required.</strong> Open a notebook in Google Colab and follow the <strong>🔵 LIVE</strong> sections. Explore optional material afterward.</p>
-        <span class="live">● BEGINNER FRIENDLY</span>
-      </div>
-    </div>
-
-    <section id="notebooks" class="wrap" aria-labelledby="notebooks-heading">
-      <div class="section-top"><div><span class="kicker">Your workshop lab</span><h2 id="notebooks-heading">Three notebooks. One story.</h2><p class="section-desc">Follow the fictional Bahrain Sample Bank (BSB), from protecting today's data to understanding tomorrow's quantum threats and defenses.</p></div><div class="count">01 → 02 → 03</div></div>
-      <div class="cards">
-        <article class="course" style="--accent:#84ddec">
-          <div class="course-no"><span>PART 01</span><span>01 / 03</span></div>
-          <div class="course-icon" aria-hidden="true">▣</div>
-          <h3>Classical Security &amp; IPsec</h3>
-          <p>Visit BSB's Manama and Dubai sites. Watch Diffie–Hellman establish a shared secret, encrypt a banking record, and understand Eve's harvest-now-decrypt-later strategy.</p>
-          <div class="tags"><span class="tag">Diffie–Hellman</span><span class="tag">AES-GCM</span><span class="tag">IPsec concepts</span></div>
-          <a class="card-link" href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" target="_blank" rel="noopener noreferrer" aria-label="Open Part 1 Classical Security in Google Colab">Open in Google Colab <span aria-hidden="true">↗</span></a>
-          <a class="source-link" href="https://github.com/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" target="_blank" rel="noopener noreferrer">View notebook source ↗</a>
-        </article>
-        <article class="course" style="--accent:#bfabff">
-          <div class="course-no"><span>PART 02</span><span>02 / 03</span></div>
-          <div class="course-icon" aria-hidden="true">ψ</div>
-          <h3>Quantum Computing &amp; Shor</h3>
-          <p>Turn bits into qubits. Explore Bloch spheres, measurements, quantum gates and entanglement, then see how quantum algorithms threaten classical public-key systems.</p>
-          <div class="tags"><span class="tag">Bloch sphere</span><span class="tag">Qiskit</span><span class="tag">Shor's algorithm</span></div>
-          <a class="card-link" href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/02_QuantumComputing.ipynb" target="_blank" rel="noopener noreferrer" aria-label="Open Part 2 Quantum Computing in Google Colab">Open in Google Colab <span aria-hidden="true">↗</span></a>
-          <a class="source-link" href="https://github.com/limnesh/BITEX/blob/main/02_QuantumComputing.ipynb" target="_blank" rel="noopener noreferrer">View notebook source ↗</a>
-        </article>
-        <article class="course" style="--accent:#9ee7b4">
-          <div class="course-no"><span>PART 03</span><span>03 / 03</span></div>
-          <div class="course-icon" aria-hidden="true">✳</div>
-          <h3>QKD, Satellites &amp; AI</h3>
-          <p>Follow photons from Alice to Bob. Investigate Eve, QBER, error correction, privacy amplification and secret key rates, then explore satellite links and AI-assisted optimization.</p>
-          <div class="tags"><span class="tag">BB84 / decoy</span><span class="tag">QBER &amp; SKR</span><span class="tag">Machine learning</span></div>
-          <a class="card-link" href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/03_QKDandML.ipynb" target="_blank" rel="noopener noreferrer" aria-label="Open Part 3 QKD and ML in Google Colab">Open in Google Colab <span aria-hidden="true">↗</span></a>
-          <a class="source-link" href="https://github.com/limnesh/BITEX/blob/main/03_QKDandML.ipynb" target="_blank" rel="noopener noreferrer">View notebook source ↗</a>
-        </article>
-      </div>
-      <div class="journey" aria-label="Workshop learning journey">
-        <div class="journey-step"><b>Protect the data</b><p>How is a banking session encrypted, and what can an eavesdropper capture?</p></div>
-        <div class="journey-step"><b>Understand the threat</b><p>What changes when quantum computing meets public-key cryptography?</p></div>
-        <div class="journey-step"><b>Explore the defense</b><p>Can Alice and Bob establish a secret using quantum states and classical checks?</p></div>
-      </div>
-    </section>
-
-    <section id="getting-started" class="wrap" aria-labelledby="quickstart-heading">
-      <div class="quick-area">
-        <div><span class="kicker">Participant guide</span><h2 id="quickstart-heading">You only need a browser.</h2><p>All the experiments run in Google Colab, using Python notebooks. The interactive controls are part of the learning experience.</p><a class="btn btn-ghost" href="https://github.com/limnesh/BITEX" target="_blank" rel="noopener noreferrer">Browse the GitHub repository ↗</a></div>
-        <ol class="quick-list">
-          <li><span class="num">1</span><div><strong>Open Part 01</strong>Click a Colab link above. The notebook opens in a <em>new browser tab</em>, leaving this page open.</div></li>
-          <li><span class="num">2</span><div><strong>Connect and run Setup</strong>Sign in to Google if prompted, connect the runtime, and run the initial setup cell. Allow package installation to finish.</div></li>
-          <li><span class="num">3</span><div><strong>Follow 🔵 LIVE in sequence</strong>Read the short explanation, predict the result, change a value, and execute the cell. Use 🟠 OPTIONAL sections for further exploration.</div></li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="presenter" class="wrap" aria-labelledby="about-heading">
-      <div class="section-top"><div><span class="kicker">Meet your speaker</span><h2 id="about-heading">Limnesh Augustine</h2><p class="section-desc">Engineer · Project Manager · Quantum Communication Enthusiast · 3D Artist · Private Pilot</p></div></div>
-      <div class="about-layout">
-        <div class="about-card">
-          <p><strong>Limnesh Augustine</strong> is an Electronics and Communication Engineer (<strong>University of Calicut, 2003</strong>) and Project Manager at <strong>Gulf Business Machines (GBM), Bahrain</strong>, with more than two decades of IT experience. He previously served as <strong>Head of IT for the Works Directorate</strong> and subsequently the <strong>Planning &amp; Future Systems Directorate</strong> at Bahrain's Ministry of Interior until 2019.</p>
-          <p>He is also an internationally recognized <strong>3D anamorphic artist</strong>, a multiple Guinness World Record holder (Bahrain and USA), recipient of Italy's <strong>Madonnari title</strong>, and an <strong>EASA-licensed Private Pilot</strong>. His artistic collaborations include FAO, UNDP, WHO and WWF, alongside contributions to UN-related initiatives.</p>
-          <p>His interests span <strong>quantum communication, QKD, free-space optics and AI</strong>. He has completed postgraduate studies at <strong>IIT Delhi</strong>, presented a 2025 IEEE paper on AI-based art evaluation, and won a 2019 CID hacking competition organized by Bahrain's Ministry of Interior.</p>
-          <div class="about-eyebrow"><span class="mini-pill">Electronics &amp; IT</span><span class="mini-pill">Quantum &amp; AI</span><span class="mini-pill">3D Anamorphic Art</span><span class="mini-pill">Aviation</span></div>
-        </div>
-        <aside class="side-card"><div class="quote-icon" aria-hidden="true">“</div><blockquote>Make complex ideas tangible. Change one variable. Observe what happens. Ask why.</blockquote><span>The philosophy behind this interactive workshop</span><div style="margin-top:auto"><a class="btn btn-ghost" href="https://3dcouple.com/" target="_blank" rel="noopener noreferrer">Explore 3D Couple ↗</a></div></aside>
-      </div>
-    </section>
-
-    <section id="resources" class="wrap" aria-labelledby="resources-heading">
-      <div class="section-top"><div><span class="kicker">Go deeper</span><h2 id="resources-heading">Beyond the workshop.</h2><p class="section-desc">Explore the research, creative projects and aviation work behind the ideas shared today.</p></div></div>
-      <div class="resource-grid">
-        <a class="resource" target="_blank" rel="noopener noreferrer" href="https://limnesh.github.io/QuantumKeyDistribution-DPS/DPS_QKD_FSO_Project_Report_v1.0.html"><span><b>📄 DPS-QKD over Free-Space Optical Channels</b><small>Read the project research report</small></span><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="resource" target="_blank" rel="noopener noreferrer" href="https://limnesh.github.io/QuantumKeyDistribution-FSO/QKD_FSO_Project_Report-v1.0.html"><span><b>🔭 Quantum Key Distribution over FSO</b><small>Explore the free-space optics project report</small></span><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="resource" target="_blank" rel="noopener noreferrer" href="https://3dcouple.com/"><span><b>🎨 3D Couple</b><small>Anamorphic art and optical illusion projects</small></span><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="resource" target="_blank" rel="noopener noreferrer" href="https://www.atcspeak.com/about"><span><b>✈️ ATCSpeak</b><small>Aviation communication learning project</small></span><span class="arrow" aria-hidden="true">↗</span></a>
-      </div>
-      <details class="help"><summary>🛠️ Colab troubleshooting and important notes</summary><div class="help-body"><ul>
-        <li><strong>A button doesn't respond?</strong> Run the notebook's setup and widget-creation cells, then check that Colab is connected.</li>
-        <li><strong>Missing Qiskit or scikit-learn?</strong> Run Setup, which installs the notebook's dependencies.</li>
-        <li><strong>NameError?</strong> Restart the runtime, then run the notebook cells in order.</li>
-        <li><strong>Random results?</strong> Some quantum samples and ML calculations are intentionally stochastic.</li>
-        <li><strong>Toy DH or Shor circuits?</strong> Educational examples illustrate the mathematics; they are not production attacks or fault-tolerant hardware demonstrations.</li>
-        <li><strong>SKR figures?</strong> These are outputs of models with assumptions, not deployment guarantees or complete finite-key security proofs.</li>
-      </ul></div></details>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footer-row"><p>© 2026 · Quantum Security 101 · MeetICT &amp; BITEX · Bahrain</p><div class="footer-links"><a href="#top">Back to top ↑</a><a href="https://github.com/limnesh/BITEX" target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a><a href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" target="_blank" rel="noopener noreferrer">Start Part 01 ↗</a></div></div>
-      <div class="note">An independent educational workshop. Bahrain Sample Bank (BSB) is fictional. All external links open in a new tab; interactive models are for teaching and research exploration.</div>
-    </div>
-  </footer>
+</main>
 </body>
 </html>
