@@ -5,44 +5,408 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Quantum Security 101 at MeetICT & BITEX 2026. Three interactive Google Colab notebooks covering classical security, quantum computing, and quantum key distribution.">
   <title>Quantum Security 101 | BITEX 2026</title>
-  <style>
-    :root {color-scheme: light;}
-    * {box-sizing:border-box;}
-    body {background:#fff;color:#1f2328;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:0;}
-    main {max-width:1020px;margin:0 auto;padding:30px 30px 65px;}
-    h1,h2,h3 {line-height:1.3;margin:26px 0 14px;font-weight:650;}
-    h1 {font-size:2.15rem;margin-top:10px;}
-    h2 {font-size:1.55rem;padding-bottom:7px;border-bottom:1px solid #d8dee4;}
-    h3 {font-size:1.17rem;}
-    p {margin:10px 0 16px;}
-    a {color:#0969da;text-decoration:none;}
-    a:hover {text-decoration:underline;}
-    hr {border:0;border-top:1px solid #d8dee4;margin:25px 0;}
-    strong {font-weight:650;}
-    .readme-center {text-align:center;}
-    .readme-center h3 {color:#57606a;font-weight:500;}
-    .meta-line {font-size:.9rem;color:#57606a;}
-    .table-scroll {width:100%;overflow-x:auto;margin:18px 0 22px;}
-    table {width:100%;border-spacing:0;border-collapse:collapse;min-width:650px;font-size:.94rem;}
-    th,td {border:1px solid #d0d7de;padding:10px 12px;vertical-align:top;text-align:left;}
-    th {background:#f6f8fa;font-weight:650;}
-    tr:nth-child(even) td {background:#fbfcfd;}
-    td img {max-width:142px;height:auto;vertical-align:middle;}
-    code {background:#f6f8fa;border-radius:5px;padding:2px 5px;font-size:.91em;white-space:nowrap;}
-    blockquote {margin:18px 0;padding:0 16px;border-left:4px solid #d0d7de;color:#57606a;}
-    blockquote p {margin:6px 0;}
-    details {border:1px solid #d0d7de;border-radius:7px;padding:13px 17px;margin:18px 0;}
-    summary {cursor:pointer;font-weight:600;}
-    li {padding:2px 0;}
-    @media(max-width:680px) {
-      main {padding:20px 17px 45px;}
-      h1 {font-size:1.8rem;}
-      h2 {font-size:1.35rem;}
-      body {font-size:15px;}
-      table {font-size:.89rem;}
+  
+<style>
+  /* ==========================================
+     BITEX 2026 — PROFESSIONAL DARK THEME
+     Clean GitHub-inspired dark styling
+     ========================================== */
 
+  :root {
+    color-scheme: dark;
+
+    --bg: #0b1220;
+    --surface: #111c2e;
+    --surface-hover: #18263b;
+    --surface-alt: #152238;
+
+    --text: #e7edf7;
+    --text-muted: #a5b4c8;
+    --heading: #f5f9ff;
+
+    --accent: #58c4ff;
+    --accent-hover: #93dcff;
+
+    --border: #2b3c55;
+    --border-soft: #20314a;
+
+    --success: #5ee1ac;
+    --warning: #fbbf6b;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.75 -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Helvetica,
+          Arial,
+          sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* MAIN PAGE */
+
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 35px 32px 75px;
+  }
+
+  /* HEADINGS */
+
+  h1, h2, h3 {
+    color: var(--heading);
+    line-height: 1.35;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    margin: 16px 0 8px;
+    font-weight: 750;
+    letter-spacing: -0.045em;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+    margin: 34px 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.18rem;
+    margin: 23px 0 12px;
+  }
+
+  /* BODY TEXT */
+
+  p {
+    margin: 12px 0 18px;
+  }
+
+  strong {
+    font-weight: 650;
+    color: #f5f8ff;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    text-underline-offset: 3px;
+    transition: color 0.15s ease;
+  }
+
+  a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+
+  a:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 3px;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 30px 0;
+  }
+
+  /* WORKSHOP HEADER */
+
+  .readme-center {
+    text-align: center;
+    padding: 24px 10px 16px;
+  }
+
+  .readme-center h1 {
+    color: #f5f9ff;
+  }
+
+  .readme-center h3 {
+    color: #9ad9ff;
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  .readme-center p {
+    color: var(--text-muted);
+  }
+
+  .readme-center strong {
+    color: #f5f9ff;
+  }
+
+  .meta-line {
+    font-size: 0.93rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+  }
+
+  /* NOTEBOOK TABLE */
+
+  .table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0 26px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    min-width: 650px;
+    font-size: 0.94rem;
+  }
+
+  th, td {
+    padding: 14px 15px;
+    vertical-align: top;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th + th,
+  td + td {
+    border-left: 1px solid var(--border-soft);
+  }
+
+  th {
+    background: #1b2d47;
+    color: #d2e9ff;
+    font-weight: 700;
+  }
+
+  td {
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  tr:nth-child(even) td {
+    background: var(--surface-alt);
+  }
+
+  tr:hover td {
+    background: var(--surface-hover);
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+  td strong {
+    color: #ffffff;
+  }
+
+  td a {
+    color: #6dcfff;
+    font-weight: 550;
+  }
+
+  td img {
+    max-width: 142px;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  /* CODE / FILENAMES */
+
+  code {
+    background: #1d314c;
+    color: #b8e5ff;
+    border: 1px solid #304760;
+    border-radius: 5px;
+    padding: 3px 7px;
+    font-size: 0.91em;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  pre {
+    background: #0e1a2c;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 17px;
+    overflow-x: auto;
+  }
+
+  pre code {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    white-space: pre;
+  }
+
+  /* QUOTES AND WORKSHOP NOTES */
+
+  blockquote {
+    margin: 22px 0;
+    padding: 13px 18px;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    background: #13253a;
+    color: #c7d6e9;
+  }
+
+  blockquote p {
+    margin: 5px 0;
+    color: #c7d6e9;
+  }
+
+  /* TROUBLESHOOTING */
+
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 22px 0;
+  }
+
+  details[open] {
+    border-color: #3b6486;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 650;
+    color: #a9ddff;
+    font-size: 1rem;
+  }
+
+  summary:hover {
+    color: #ffffff;
+  }
+
+  details li {
+    color: var(--text-muted);
+    margin: 8px 0;
+  }
+
+  /* LISTS */
+
+  ul, ol {
+    padding-left: 25px;
+  }
+
+  li {
+    padding: 3px 0;
+  }
+
+  li::marker {
+    color: #6bc8ff;
+  }
+
+  /* OPTIONAL BUTTON STYLE */
+
+  .button,
+  a.button {
+    display: inline-block;
+    background: #176a9d;
+    color: #ffffff;
+    padding: 9px 17px;
+    border: 1px solid #3197cd;
+    border-radius: 8px;
+    font-size: 0.93rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .button:hover,
+  a.button:hover {
+    background: #2385bc;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  /* IMAGES */
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* FOOTER */
+
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 25px 0;
+    margin-top: 35px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* MOBILE */
+
+  @media (max-width: 680px) {
+
+    body {
+      font-size: 15px;
+      line-height: 1.65;
     }
-  </style>
+
+    main {
+      padding: 20px 17px 50px;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    .readme-center {
+      padding: 15px 0;
+    }
+
+    .readme-center h3 {
+      font-size: 1.05rem;
+    }
+
+    table {
+      font-size: 0.88rem;
+    }
+
+    th, td {
+      padding: 11px 10px;
+    }
+
+    blockquote {
+      padding: 12px 14px;
+    }
+
+    details {
+      padding: 13px 15px;
+    }
+  }
+</style>
+
 </head>
 <body>
 <main>
@@ -50,7 +414,7 @@
 <h1>🔐 Quantum Security 101</h1>
 <h3>From Breaking RSA to Quantum Key Distribution with AI</h3>
 <p><strong>One fictional bank. Three interactive notebooks. A journey from classical encryption to quantum-safe communication.</strong></p>
-<p class="meta-line"><a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">MeetICT &amp; BITEX 2026</a>
+<p class="meta-line"><a href="https://github.com/limnesh/bitex" rel="noopener noreferrer" target="_blank">MeetICT &amp; BITEX 2026</a>
  · Bahrain
  · Interactive Google Colab
  · Beginners welcome</p>
@@ -59,7 +423,7 @@
 Project Manager · Gulf Business Machines (GBM), Bahrain</p>
 </div>
 <hr/>
-<h2>🚀 Open the three notebooks</h2>
+<h2>🚀 Jupyter Notebook Links</h2>
 <p>Work through them <strong>in order</strong>. Each notebook contains explanations, runnable Python cells and interactive controls.</p>
 <div class="table-scroll"><table>
 <thead>
@@ -73,30 +437,30 @@ Project Manager · Gulf Business Machines (GBM), Bahrain</p>
 <tbody>
 <tr>
 <td><strong>01 🏦</strong></td>
-<td><strong>BSB Banking, IPsec &amp; Harvest Now–Decrypt Later</strong><br/><a href="https://github.com/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" rel="noopener noreferrer" target="_blank"><code>01_ClassicalSecurity.ipynb</code></a></td>
-<td><a href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/01_ClassicalSecurity.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
+<td><strong>BSB Banking, IPsec &amp; Harvest Now–Decrypt Later</strong></td>
+<td><a href="https://colab.research.google.com/github/limnesh/bitex/blob/main/01_ClassicalSecurity.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
 <td>Observe key exchange, encrypt a banking record, and see what Eve can record.</td>
 </tr>
 <tr>
 <td><strong>02 ⚛️</strong></td>
-<td><strong>From Classical Bits to Qubits and Shor's Algorithm</strong><br/><a href="https://github.com/limnesh/BITEX/blob/main/02_QuantumComputing.ipynb" rel="noopener noreferrer" target="_blank"><code>02_QuantumComputing.ipynb</code></a></td>
-<td><a href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/02_QuantumComputing.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
+<td><strong>From Classical Bits to Qubits and Shor's Algorithm</strong></td>
+<td><a href="https://colab.research.google.com/github/limnesh/bitex/blob/main/02_QuantumComputing.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
 <td>Experiment with Bloch spheres, gates, measurements, and the quantum threat to public-key cryptography.</td>
 </tr>
 <tr>
 <td><strong>03 🔦</strong></td>
-<td><strong>Quantum Key Distribution, Satellites &amp; Machine Learning</strong><br/><a href="https://github.com/limnesh/BITEX/blob/main/03_QKDandML.ipynb" rel="noopener noreferrer" target="_blank"><code>03_QKDandML.ipynb</code></a></td>
-<td><a href="https://colab.research.google.com/github/limnesh/BITEX/blob/main/03_QKDandML.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
+<td><strong>Quantum Key Distribution, Satellites &amp; Machine Learning</strong></td>
+<td><a href="https://colab.research.google.com/github/limnesh/bitex/blob/main/03_QKDandML.ipynb" rel="noopener noreferrer" target="_blank">Open in Colab ↗</a></td>
 <td>Send simulated photon pulses; explore BB84, Eve, QBER, reconciliation, privacy amplification, SKR and AI.</td>
 </tr>
 </tbody>
 </table></div>
-<p><strong>📂 <a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">Browse all workshop files on GitHub</a></strong></p>
+<p><strong>📂 <a href="https://github.com/limnesh/bitex" rel="noopener noreferrer" target="_blank">Browse all workshop files on GitHub</a></strong></p>
 <hr/>
 <h2>👨‍🚀 About the presenter — Limnesh Augustine</h2>
-<p><strong>Limnesh Augustine</strong> is an <strong>Electronics and Communication Engineer (University of Calicut, 2003)</strong> and <strong>Project Manager at Gulf Business Machines (GBM), Bahrain</strong>, with over two decades of IT experience. He previously served as <strong>Head of IT for the Works Directorate and subsequently the Planning &amp; Future Systems Directorate at the Ministry of Interior, Bahrain, until 2019</strong>.</p>
-<p>Beyond technology, he is an internationally recognized <strong>3D anamorphic artist</strong>, a <strong>multiple Guinness World Record holder</strong> (Bahrain and USA), recipient of Italy’s <strong>Madonnari title</strong>, and an <strong>EASA-licensed Private Pilot</strong>. His creative work includes collaborations with <strong>FAO, UNDP, WHO and WWF</strong> and participation in UN-related initiatives. Explore his art at <strong><a href="https://3dcouple.com/" rel="noopener noreferrer" target="_blank">3DCouple.com</a></strong> and his aviation learning project at <strong><a href="https://www.atcspeak.com/about" rel="noopener noreferrer" target="_blank">ATCSpeak</a></strong>.</p>
-<p>His interests span <strong>quantum communication, QKD, free-space optics and AI</strong>. He has completed postgraduate studies at <strong>IIT Delhi</strong>, presented a <strong>2025 IEEE paper</strong> on AI-based art evaluation, and won the <strong>2019 CID hacking competition</strong> organized by Bahrain’s Ministry of Interior.</p>
+<p><strong>Limnesh Augustine</strong> is an <strong>Electronics and Communication Engineer (BTech)</strong> and <strong>Project Manager at Gulf Business Machines (GBM), Bahrain</strong>, with over two decades of IT experience. He previously served as <strong>Head of IT</strong> for the Works Directorate and subsequently the Planning &amp; Future Systems Directorate at the <strong>Ministry of Interior, Bahrain</strong>, until 2019.</p>
+<p>Beyond technology, he is an internationally recognized <strong>3D anamorphic artist</strong>, a multiple <strong>Guinness World Record holder</strong> (Bahrain and USA), recipient of Italy’s <strong>Madonnari title</strong>, and an <strong>EASA-licensed Private Pilot(Airplane)</strong>. His creative work includes collaborations with <strong>FAO, UNDP, WHO and WWF</strong> and participation in UN-related initiatives. Explore his art at <strong><a href="https://3dcouple.com/" rel="noopener noreferrer" target="_blank">3DCouple.com</a></strong> and his aviation learning project at <strong><a href="https://www.atcspeak.com" rel="noopener noreferrer" target="_blank">ATCSpeak</a></strong>.</p>
+<p>His interests span <strong>Quantum computing, Quantum communication, QKD, free-space optics and AI</strong>. He has completed postgraduate studies in Quantum Communications at <strong>IIT Delhi</strong>, presented a <strong>2025 IEEE paper</strong> on AI-based art evaluation, and won the <strong>2019 CID hacking (CTF) competition</strong> organized by Bahrain’s Ministry of Interior.</p>
 <blockquote>
 <p><strong>Why this workshop?</strong> To make quantum security approachable through interactive experiments connecting classical encryption, quantum computing and photon-based key distribution.</p>
 </blockquote>
@@ -128,7 +492,7 @@ Project Manager · Gulf Business Machines (GBM), Bahrain</p>
 </tr>
 <tr>
 <td><strong>Workshop source files and updates</strong></td>
-<td><a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">🔐 GitHub · limnesh/BITEX</a></td>
+<td><a href="https://github.com/limnesh/bitex" rel="noopener noreferrer" target="_blank">🔐 GitHub · limnesh/BITEX</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -146,9 +510,7 @@ Project Manager · Gulf Business Machines (GBM), Bahrain</p>
 </ul>
 </details>
 <div class="readme-center">
-<h3>Keep experimenting. Ask why. Change one variable. Observe the result.</h3>
-<p><strong>From 0 and 1 to photons, phase, and the future of secure communication.</strong></p>
-<p>⭐ If these materials helped you, consider starring the <a href="https://github.com/limnesh/BITEX" rel="noopener noreferrer" target="_blank">BITEX repository</a>.</p>
+<p>⭐ If these materials helped you, consider starring the <a href="https://github.com/limnesh/bitex" rel="noopener noreferrer" target="_blank">BITEX repository</a>.</p>
 </div>
 
 </main>
